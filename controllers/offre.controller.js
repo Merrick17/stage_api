@@ -38,7 +38,23 @@ const getAllOffers = async (req, res) => {
     });
   }
 };
-
+const getAllOffersByType = async (req, res) => {
+  try {
+    let { type } = req.params;
+    let result = await Offre.find({
+      offerType: type,
+    }).populate("addedBy");
+    res.json({
+      success: true,
+      result: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      result: error.message,
+    });
+  }
+};
 const getAllOffersBySte = async (req, res) => {
   try {
     let { id } = req.params;
@@ -95,4 +111,5 @@ module.exports = {
   getAllOffersBySte,
   addOffre,
   updateOffre,
+  getAllOffersByType,
 };

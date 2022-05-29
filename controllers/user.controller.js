@@ -28,6 +28,24 @@ const registerUser = async (req, res) => {
     });
   }
 };
+const changeUserState = async (req, res) => {
+  try {
+    let result = await User.findByIdAndUpdate(
+      req.params.id,
+      { isActive: req.body.isActive },
+      { new: true }
+    );
+    res.json({
+      success: true,
+      result: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      result: error.message,
+    });
+  }
+};
 const loginUser = async (req, res) => {
   try {
     let { email, password } = req.body;
@@ -58,7 +76,7 @@ const loginUser = async (req, res) => {
             },
           });
         } else if (user.role == "CENTER") {
-          let ste =await  Center.findOne({ responsable: user._id });
+          let ste = await Center.findOne({ responsable: user._id });
           res.json({
             success: true,
             result: {
@@ -80,7 +98,7 @@ const loginUser = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error);
     res.json({
       success: false,
       result: error.message,
@@ -122,4 +140,5 @@ module.exports = {
   registerUser,
   getAllUsers,
   deleteUser,
+  changeUserState,
 };

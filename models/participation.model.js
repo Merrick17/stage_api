@@ -7,10 +7,12 @@ const ParticipationSchema = new mongoose.Schema({
   sendedBy: {
     required: true,
     type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   offre: {
     required: true,
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Offre",
   },
   confirmed: {
     required: true,
