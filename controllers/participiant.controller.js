@@ -21,7 +21,9 @@ const getAllParticipationByOffer = async (req, res) => {
   try {
     let { offre } = req.params;
 
-    let result = await Participation.find({ offre: offre });
+    let result = await Participation.find({ offre: offre })
+      .populate("offre")
+      .populate("sendedBy");
     res.json({ success: true, result: result });
   } catch (error) {
     res.json({ success: false, result: error.message });

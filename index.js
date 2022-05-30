@@ -16,6 +16,7 @@ const participationRouter = require("./routes/participation.routes");
 const centreRouter = require("./routes/centre.routes");
 const domainRouter = require("./routes/domain.routes");
 const courseRouter = require("./routes/course.routes");
+const subscribtionRouter = require("./routes/subscribtion.routes");
 app.use("/users", userRouter);
 app.use("/ste", steRouter);
 app.use("/offre", offreRouter);
@@ -23,6 +24,7 @@ app.use("/participation", participationRouter);
 app.use("/centre", centreRouter);
 app.use("/domain", domainRouter);
 app.use("/formation", courseRouter);
+app.use("/subscribtions", subscribtionRouter);
 
 app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
