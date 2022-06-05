@@ -4,7 +4,7 @@ const verifToken = (req, res, next) => {
   if (!token) {
     res.json({
       success: false,
-      result: "No TOken Provided",
+      result: "No Token Provided",
     });
     console.log("")
   } else {
