@@ -30,9 +30,11 @@ const registerUser = async (req, res) => {
 };
 const changeUserState = async (req, res) => {
   try {
+    let { id } = req.params;
+    let { isActive } = req.body;
     let result = await User.findByIdAndUpdate(
-      req.params.id,
-      { isActive: req.body.isActive },
+      id,
+      { isActive: isActive },
       { new: true }
     );
     res.json({
